@@ -1,0 +1,227 @@
+#home {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    background: #f8f8f8;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-content {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.75fr);
+    align-items: center;
+    gap: clamp(28px, 5vw, 60px);
+}
+
+.home-label {
+    display: inline-block;
+    margin: 0 0 16px;
+    padding: 7px 14px;
+    border: 1px solid #333;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#title {
+    max-width: 720px;
+    margin: 0;
+    font-size: 52px;
+    line-height: 1.1;
+}
+
+#desc {
+    margin: 12px 0 0;
+    font-size: 26px;
+    font-weight: 500;
+    color: #555;
+}
+
+.home-intro {
+    max-width: 620px;
+    margin: 22px 0 0;
+    color: #444;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.home-actions {
+    display: flex;
+    gap: 14px;
+    margin-top: 30px;
+}
+
+.home-actions a {
+    text-decoration: none;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 6px;
+}
+
+.btn-primary {
+    background: #333;
+    color: white;
+    border: 2px solid #333;
+}
+
+.btn-secondary {
+    color: #333;
+    border: 2px solid #333;
+}
+
+.btn-primary:hover {
+    background: #111;
+}
+
+.btn-secondary:hover {
+    background: #333;
+    color: white;
+}
+
+.home-visual {
+    width: clamp(260px, 26vw, 360px);
+    aspect-ratio: 360 / 460;
+    height: auto;
+    justify-self: end;
+    position: relative;
+    border-radius: 34px;
+    background: #eef0f4;
+    overflow: visible;
+    box-shadow: 0 24px 55px rgba(0, 0, 0, 0.14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-visual::before {
+    content: "";
+    position: absolute;
+    width: 92%;
+    height: 96%;
+    right: -22px;
+    bottom: -20px;
+    border: 2px solid rgba(80, 80, 80, 0.35);
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-radius: 42px;
+    z-index: 0;
+}
+
+.home-visual::after {
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 72%;
+    left: -28px;
+    top: 42px;
+    border: 1.5px dashed rgba(80, 80, 80, 0.22);
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    transform: rotate(-18deg);
+    z-index: 0;
+}
+
+.home-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+    display: block;
+    border-radius: 34px;
+    position: relative;
+    z-index: 1;
+}
+
+.home-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    #home {
+        min-height: auto;
+        padding: 70px 24px 50px;
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #home::before {
+        content: "";
+        position: absolute;
+        width: 230px;
+        height: 230px;
+        left: -115px;
+        top: 20px;
+        background:
+            repeating-radial-gradient(
+                circle at top left,
+                transparent 0 13px,
+                rgba(80, 80, 80, 0.18) 14px,
+                rgba(80, 80, 80, 0.18) 15px,
+                transparent 16px 28px
+            );
+        z-index: 0;
+    }
+
+    #home::after {
+        content: "";
+        position: absolute;
+        width: 250px;
+        height: 390px;
+        right: -120px;
+        bottom: -40px;
+        background-image: url("data:image/svg+xml,%3Csvg width='260' height='420' viewBox='0 0 260 420' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23666666' stroke-width='1.4' opacity='0.28'%3E%3Cpath d='M62 48L142 18L214 70L180 150L92 138L62 48Z'/%3E%3Cpath d='M62 48L180 150M142 18L92 138M214 70L92 138'/%3E%3Cpath d='M22 206L96 166L172 214L146 304L54 290L22 206Z'/%3E%3Cpath d='M22 206L146 304M96 166L54 290M172 214L54 290M96 166L146 304'/%3E%3Cpath d='M88 332L160 302L236 350L206 410L120 398L88 332Z'/%3E%3Cpath d='M88 332L206 410M160 302L120 398M236 350L120 398'/%3E%3C/g%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: contain;
+        z-index: 0;
+    }
+
+    .home-content {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        position: relative;
+        z-index: 1;
+    }
+
+    #title {
+        font-size: 36px;
+    }
+
+    #desc {
+        font-size: 21px;
+    }
+
+    .home-intro {
+        font-size: 15px;
+    }
+
+    .home-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .home-actions a {
+        width: 100%;
+        max-width: 220px;
+        text-align: center;
+    }
+
+    .home-visual {
+        display: none;
+    }
+}
+
+

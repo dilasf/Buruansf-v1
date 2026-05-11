@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Artikel Ilmiah – Perancangan Website Portofolio Sifa Fadilah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f0;
+      --gray-light: #e8e8e3;
+      --gray-mid: #999;
+      --gray-dark: #444;
+      --accent: #1a1a1a;
+      --border: #d0d0ca;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Source Serif 4', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    /* ── HEADER / COVER ── */
+    .cover {
+      background: var(--black);
+      color: var(--white);
+      padding: 60px 40px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 39px,
+        rgba(255,255,255,0.03) 39px,
+        rgba(255,255,255,0.03) 40px
+      );
+    }
+    .cover-inner { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; }
+
+    .cover-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-bottom: 24px;
+    }
+
+    .cover h1 {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 28px;
+    }
+
+    .cover-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 14px;
+      color: rgba(245,245,240,0.75);
+    }
+    .cover-meta strong { color: var(--white); }
+
+    .cover-divider {
+      width: 60px;
+      height: 1px;
+      background: rgba(255,255,255,0.25);
+      margin: 28px auto;
+    }
+
+    /* ── ABSTRACT ── */
+    .abstract-wrap {
+      border-bottom: 1px solid var(--border);
+      background: #f0f0eb;
+    }
+    .abstract-inner {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 36px 40px;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0 40px;
+    }
+    @media (max-width: 600px) {
+      .abstract-inner { grid-template-columns: 1fr; padding: 28px 24px; }
+    }
+    .abstract-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      padding-top: 4px;
+    }
+    .abstract-text {
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: var(--gray-dark);
+    }
+    .keywords {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--gray-dark);
+    }
+    .keywords span {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: var(--black);
+      color: var(--white);
+      padding: 2px 8px;
+      border-radius: 2px;
+      margin-right: 6px;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    /* ── ARTICLE BODY ── */
+    article {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 56px 40px 80px;
+    }
+    @media (max-width: 600px) {
+      article { padding: 36px 24px 60px; }
+    }
+
+    /* ── SECTIONS ── */
+    .section { margin-bottom: 52px; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--black);
+      padding-bottom: 10px;
+    }
+    .section-number {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--gray-mid);
+      letter-spacing: 1px;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .sub-section { margin: 28px 0; }
+    .sub-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    p { margin-bottom: 16px; font-size: 15.5px; }
+
+    /* ── FIGURE / DIAGRAM PLACEHOLDER ── */
+    .figure {
+      margin: 32px 0;
+      border: 1px solid var(--border);
+    }
+    .figure-image {
+      max-width: 100%;
+      max-height: 560px;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      background: #fff;
+    }
+    .figure-placeholder {
+      background: #fff;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 32px;
+    }
+    .figure-icon {
+      width: 48px;
+      height: 48px;
+      border: 2px dashed var(--border);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .figure-icon svg { opacity: 0.3; }
+    .figure-placeholder-text {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--gray-mid);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .figure-caption {
+      padding: 12px 16px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 12.5px;
+      font-family: var(--font-mono);
+    }
+    .figure-caption strong { color: rgba(255,255,255,0.5); margin-right: 8px; }
+
+    /* ── TABLE ── */
+    .table-wrap { margin: 28px 0; overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th {
+      background: var(--black);
+      color: var(--white);
+      padding: 10px 14px;
+      text-align: left;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 1px;
+      font-weight: 500;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f5f5f0; }
+    .table-caption {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--gray-mid);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    /* ── CALLOUT ── */
+    .callout {
+      border-left: 3px solid var(--black);
+      padding: 16px 20px;
+      background: #f0f0eb;
+      margin: 24px 0;
+      font-size: 14.5px;
+      font-style: italic;
+      color: var(--gray-dark);
+    }
+
+    /* ── REFERENCES ── */
+    .references ol {
+      padding-left: 20px;
+      counter-reset: ref;
+      list-style: none;
+    }
+    .references ol li {
+      counter-increment: ref;
+      font-size: 13.5px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+      padding-left: 28px;
+      position: relative;
+      color: var(--gray-dark);
+    }
+    .references ol li::before {
+      content: '[' counter(ref) ']';
+      position: absolute;
+      left: 0;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--gray-mid);
+      top: 2px;
+    }
+    .references a {
+      color: var(--black);
+      word-break: break-all;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 24px 40px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+    footer strong { color: rgba(255,255,255,0.7); }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ COVER ═══════════ -->
+<header class="cover">
+  <div class="cover-inner">
+    <p class="cover-label">Artikel Ilmiah &nbsp;·&nbsp; Teknologi Informasi</p>
+    <h1>Perancangan dan Implementasi Website Portofolio Pribadi<br>
+      sebagai Media Representasi Kompetensi<br>
+      Web &amp; Mobile Developer</h1>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <p><strong>Sifa Fadilah</strong></p>
+      <p>Web &amp; Mobile Developer</p>
+      <p style="margin-top:10px; font-size:13px;">2025</p>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ ABSTRAK ═══════════ -->
+<section class="abstract-wrap">
+  <div class="abstract-inner">
+    <div class="abstract-label">Abstrak</div>
+    <div>
+      <p class="abstract-text">
+        Artikel ini membahas proses perancangan dan implementasi website portofolio pribadi berbasis 
+        HTML dan CSS yang diterbitkan melalui layanan GitHub Pages. Website portofolio merupakan 
+        salah satu media representasi digital yang efektif bagi seorang pengembang perangkat lunak 
+        dalam menampilkan kompetensi, proyek, dan identitas profesional secara daring. Metode 
+        perancangan mengikuti alur desain berbasis kebutuhan pengguna yang meliputi tahap analisis, 
+        pemodelan menggunakan Unified Modeling Language (UML), perancangan antarmuka menggunakan 
+        Balsamiq Wireframes, serta implementasi dengan teknologi HTML dan CSS. Hasil penelitian 
+        menunjukkan bahwa website portofolio yang dibangun mampu menampilkan informasi secara 
+        terstruktur, responsif, dan estetis sesuai identitas visual pengembang.
+      </p>
+      <div class="keywords">
+        <strong style="font-family:var(--font-mono);font-size:11px;letter-spacing:1px;color:var(--gray-mid);margin-right:8px;">Kata Kunci</strong>
+        <span>Website Portofolio</span>
+        <span>HTML &amp; CSS</span>
+        <span>GitHub Pages</span>
+        <span>UML</span>
+        <span>Wireframe</span>
+        <span>Balsamiq</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BODY ═══════════ -->
+<article>
+
+  <!-- 1. PENDAHULUAN -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Pendahuluan</h2>
+    </div>
+    <p>
+      Perkembangan teknologi informasi yang pesat telah mendorong perubahan cara seseorang 
+      memperkenalkan diri secara profesional di dunia digital. Bagi seorang pengembang perangkat 
+      lunak, kemampuan teknis tidak cukup hanya dibuktikan melalui dokumen Curriculum Vitae (CV) 
+      konvensional. Dibutuhkan sebuah media representasi yang dapat menampilkan kompetensi, 
+      karya, dan kepribadian secara nyata dan interaktif.
+    </p>
+    <p>
+      Website portofolio pribadi hadir sebagai solusi atas kebutuhan tersebut. 
+      Sebagaimana dinyatakan dalam penelitian Wirastuti dkk. [1], 
+      portofolio berbasis website memberikan kemudahan akses dan efisiensi penyimpanan dibandingkan 
+      portofolio dalam format konvensional. Pengguna hanya perlu mengakses satu tautan untuk melihat 
+      seluruh informasi yang disajikan.
+    </p>
+    <p>
+      Pemilihan HTML dan CSS sebagai teknologi utama didasarkan pada karakteristiknya yang ringan, 
+      mudah dipublikasikan, dan tidak memerlukan server backend. Hal ini sejalan dengan kajian 
+      Jihadi dan Syarabil [2] yang menyatakan bahwa HTML dan CSS merupakan fondasi utama pengembangan 
+      tampilan web yang efektif dalam menyampaikan konten secara terstruktur dan visual.
+    </p>
+    <p>
+      Website yang dibangun selanjutnya dipublikasikan menggunakan layanan GitHub Pages, yaitu 
+      platform hosting statis gratis yang disediakan oleh GitHub dan memungkinkan pengguna untuk 
+      menerbitkan proyek berbasis HTML langsung dari repositori.
+    </p>
+    <p>
+      Artikel ini bertujuan untuk mendokumentasikan proses perancangan website portofolio pribadi 
+      secara sistematis, mulai dari analisis kebutuhan, pemodelan UML, perancangan wireframe 
+      menggunakan Balsamiq, hingga implementasi dan pengujian hasil akhir.
+    </p>
+  </section>
+
+  <!-- 2. LANDASAN TEORI -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Landasan Teori</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3 class="sub-title">2.1 Website Portofolio</h3>
+      <p>
+        Website portofolio merupakan representasi digital dari kemampuan dan pencapaian seseorang 
+        yang dapat diakses secara daring. Dalam konteks pengembang perangkat lunak, portofolio 
+        berperan penting dalam membangun kredibilitas dan menarik perhatian calon klien maupun 
+        perekrut [3]. Sebuah portofolio yang baik setidaknya mencakup informasi tentang diri 
+        pengembang, keahlian teknis, proyek yang pernah dikerjakan, serta informasi kontak.
+      </p>
+    </div>
+
+    <div class="sub-section">
+      <h3 class="sub-title">2.2 HTML dan CSS</h3>
+      <p>
+        HyperText Markup Language (HTML) adalah bahasa markup standar untuk membangun struktur 
+        halaman web. Sementara itu, Cascading Style Sheets (CSS) berfungsi untuk mengontrol 
+        tampilan visual elemen-elemen HTML, seperti tata letak, warna, tipografi, dan ukuran [4].
+        Kombinasi keduanya memungkinkan pemisahan antara konten dan presentasi, sehingga pemeliharaan 
+        dan pengembangan lebih efisien.
+      </p>
+    </div>
+
+    <div class="sub-section">
+      <h3 class="sub-title">2.3 GitHub Pages</h3>
+      <p>
+        GitHub Pages adalah layanan hosting statis yang disediakan oleh GitHub secara gratis. 
+        Layanan ini memungkinkan pengguna menerbitkan file HTML, CSS, dan JavaScript langsung dari 
+        repositori GitHub tanpa memerlukan konfigurasi server. Setiap perubahan yang didorong 
+        (push) ke repositori akan langsung diperbarui pada website yang diterbitkan.
+      </p>
+    </div>
+
+    <div class="sub-section">
+      <h3 class="sub-title">2.4 Unified Modeling Language (UML)</h3>
+      <p>
+        UML adalah bahasa pemodelan visual yang digunakan untuk menggambarkan struktur dan 
+        perilaku suatu sistem perangkat lunak. Dalam perancangan sistem berbasis web, tiga diagram 
+        UML yang umum digunakan adalah Use Case Diagram untuk menggambarkan interaksi pengguna 
+        dengan sistem, Activity Diagram untuk menggambarkan alur proses, dan Class Diagram untuk 
+        menggambarkan struktur data dan relasi antar kelas [5].
+      </p>
+    </div>
+
+    <div class="sub-section">
+      <h3 class="sub-title">2.5 Balsamiq Wireframes</h3>
+      <p>
+        Balsamiq Wireframes adalah alat perancangan antarmuka berbasis prototipe rendah 
+        (low-fidelity) yang memungkinkan perancang membuat sketsa tata letak halaman secara cepat 
+        sebelum masuk ke tahap implementasi. Balsamiq menyediakan berbagai komponen antarmuka 
+        siap pakai yang mempermudah visualisasi struktur halaman tanpa perlu memikirkan detail 
+        estetika di tahap awal perancangan.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. METODE -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Metode Perancangan</h2>
+    </div>
+    <p>
+      Perancangan website portofolio ini mengikuti pendekatan pengembangan berbasis desain 
+      (design-based development) dengan tahapan sebagai berikut:
+    </p>
+
+    <div class="table-wrap">
+      <p class="table-caption">TABEL 1 — TAHAPAN PERANCANGAN SISTEM</p>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Tahap</th>
+            <th>Aktivitas</th>
+            <th>Alat / Metode</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Analisis Kebutuhan</td>
+            <td>Identifikasi fitur dan kebutuhan pengguna</td>
+            <td>Observasi, studi literatur</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Pemodelan Sistem</td>
+            <td>Perancangan Use Case, Activity, dan Class Diagram</td>
+            <td>UML (Visual Paradigm)</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Perancangan Antarmuka</td>
+            <td>Pembuatan wireframe halaman-halaman utama</td>
+            <td>Balsamiq Wireframes</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Implementasi</td>
+            <td>Penulisan kode HTML dan CSS</td>
+            <td>VS Code, HTML5, CSS3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Pengujian</td>
+            <td>Uji tampilan pada berbagai perangkat</td>
+            <td>Browser, DevTools</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Publikasi</td>
+            <td>Penerbitan website ke internet</td>
+            <td>GitHub Pages</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 4. ANALISIS KEBUTUHAN -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <h2 class="section-title">Analisis Kebutuhan</h2>
+    </div>
+    <p>
+      Berdasarkan tujuan pembuatan website, terdapat dua jenis pengguna yang berinteraksi 
+      dengan sistem, yaitu <em>Pengunjung</em> (publik umum, rekruter, atau calon klien) dan 
+      <em>Pemilik</em> (pengembang itu sendiri selaku admin).
+    </p>
+
+    <div class="sub-section">
+      <h3 class="sub-title">4.1 Kebutuhan Fungsional</h3>
+      <p>Website portofolio dirancang dengan fitur-fitur berikut:</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Kode</th><th>Fitur</th><th>Deskripsi</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>F-01</td><td>Halaman Beranda</td><td>Menampilkan identitas dan deskripsi singkat pengembang</td></tr>
+            <tr><td>F-02</td><td>Halaman About Me</td><td>Menampilkan latar belakang pendidikan dan keahlian</td></tr>
+            <tr><td>F-03</td><td>Halaman Projects</td><td>Menampilkan daftar proyek beserta deskripsi dan tautan</td></tr>
+            <tr><td>F-04</td><td>Halaman Contact</td><td>Menyediakan informasi dan formulir kontak</td></tr>
+            <tr><td>F-05</td><td>Navigasi Bahasa</td><td>Mendukung tampilan dalam Bahasa Indonesia dan Inggris</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3 class="sub-title">4.2 Kebutuhan Non-Fungsional</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Aspek</th><th>Kebutuhan</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Performa</td><td>Waktu muat halaman di bawah 3 detik</td></tr>
+            <tr><td>Responsivitas</td><td>Tampilan menyesuaikan layar desktop dan mobile</td></tr>
+            <tr><td>Kompatibilitas</td><td>Berjalan baik di Chrome, Firefox, dan Edge</td></tr>
+            <tr><td>Aksesibilitas</td><td>Kontras warna memadai dan navigasi keyboard-friendly</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PEMODELAN UML -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">05</span>
+      <h2 class="section-title">Pemodelan Sistem (UML)</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3 class="sub-title">5.1 Use Case Diagram</h3>
+      <p>
+        Use Case Diagram menggambarkan interaksi antara aktor (pengguna) dengan fungsi-fungsi 
+        utama yang tersedia dalam sistem. Terdapat dua aktor pada sistem ini, yaitu Pengunjung 
+        dan Pemilik Website. Pengunjung dapat mengakses seluruh halaman dan menghubungi pemilik, 
+        sementara pemilik dapat memperbarui konten website melalui repositori GitHub [6].
+      </p>
+
+     <div class="figure">
+        <div class="figure-placeholder">
+          <img
+            class="figure-image"
+            src="../img/projects/portofolio/UCD-Profile.jpg"
+            alt="Use Case Diagram"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+
+          <div class="figure-icon" style="display: none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="figure-caption">
+          <strong>Gambar 1</strong> Use Case Diagram Website Portofolio Sifa Fadilah
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3 class="sub-title">5.2 Activity Diagram</h3>
+      <p>
+        Activity Diagram menggambarkan alur aktivitas pengguna saat mengunjungi website. 
+        Alur dimulai dari membuka website, memilih halaman yang diinginkan melalui navigasi, 
+        hingga melakukan interaksi seperti mengklik proyek atau mengisi formulir kontak. 
+        Activity Diagram membantu dalam memahami alur logis sistem secara keseluruhan [5].
+      </p>
+
+     <div class="figure">
+        <div class="figure-placeholder">
+          <img
+            class="figure-image"
+            src="../img/projects/portofolio/AD-visitor.jpg"
+            alt="Use Case Diagram"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+
+          <div class="figure-icon" style="display: none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="figure-caption">
+          <strong>Gambar 2</strong> Activity Diagram Website Portofolio Sifa Fadilah
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3 class="sub-title">5.3 Class Diagram</h3>
+      <p>
+        Meskipun website ini bersifat statis (tidak menggunakan bahasa pemrograman sisi server), 
+        Class Diagram tetap digunakan untuk memodelkan struktur konten secara konseptual. Kelas 
+        utama yang diidentifikasi meliputi: <code>Page</code> (halaman web), <code>Section</code> 
+        (bagian konten), <code>Project</code> (data proyek), dan <code>ContactForm</code> 
+        (komponen kontak). Pemodelan ini berguna sebagai acuan struktur HTML dan penamaan kelas CSS.
+      </p>
+
+      <div class="figure">
+        <div class="figure-placeholder">
+          <img
+            class="figure-image"
+            src="../img/projects/portofolio/CD-portofolio.jpg"
+            alt="Use Case Diagram"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+
+          <div class="figure-icon" style="display: none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="figure-caption">
+          <strong>Gambar 3</strong> Class Diagram Website Portofolio Sifa Fadilah
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PERANCANGAN ANTARMUKA -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">06</span>
+      <h2 class="section-title">Perancangan Antarmuka (Wireframe)</h2>
+    </div>
+    <p>
+      Perancangan antarmuka dilakukan menggunakan Balsamiq Wireframes sebelum memasuki tahap 
+      implementasi. Wireframe berfungsi sebagai cetak biru visual yang menggambarkan tata letak 
+      elemen-elemen utama pada setiap halaman tanpa terikat pada detail estetika seperti warna 
+      dan tipografi.
+    </p>
+
+    <div class="sub-section">
+      <h3 class="sub-title">6.1 Identitas Visual</h3>
+      <p>Setelah wireframe disetujui, identitas visual ditentukan dengan ketentuan sebagai berikut:</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Elemen</th><th>Pilihan</th><th>Alasan</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Skema Warna Utama</td>
+              <td>Hitam (#0a0a0a) &amp; Putih (#f5f5f5)</td>
+              <td>Memberikan kesan profesional, bersih, dan modern</td>
+            </tr>
+            <tr>
+              <td>Tipografi Judul</td>
+              <td>Sans-serif tebal (bold)</td>
+              <td>Keterbacaan tinggi dan berkesan kuat</td>
+            </tr>
+            <tr>
+              <td>Tipografi Isi</td>
+              <td>Sans-serif reguler</td>
+              <td>Nyaman dibaca pada layar digital</td>
+            </tr>
+            <tr>
+              <td>Tombol CTA</td>
+              <td>Hitam solid &amp; outline putih</td>
+              <td>Kontras jelas, mudah diidentifikasi</td>
+            </tr>
+            <tr>
+              <td>Layout</td>
+              <td>Dua kolom (teks kiri, foto kanan)</td>
+              <td>Tata letak standar portofolio yang intuitif</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3 class="sub-title">6.2 Wireframe Halaman Beranda</h3>
+      <p>
+        Halaman beranda dirancang dengan navigasi di bagian atas (Home, About Me, Projects, Contact) 
+        dan tombol toggle bahasa (ID/EN). Bagian utama (hero section) menampilkan nama pengembang, 
+        deskripsi singkat, dua tombol aksi, serta foto profil di sisi kanan.
+      </p>
+
+      <div class="figure">
+        <div class="figure-placeholder">
+          <img
+            class="figure-image"
+            src="../img/projects/portofolio/wireframe.png"
+            alt="Use Case Diagram"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+
+          <div class="figure-icon" style="display: none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="figure-caption">
+          <strong>Gambar 4</strong> Wireframe Website Portofolio Sifa Fadilah
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. IMPLEMENTASI -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Implementasi</h2>
+    </div>
+    <p>
+      Implementasi dilakukan menggunakan editor kode Visual Studio Code dengan ekstensi Live Server 
+      untuk pengujian real-time. Struktur file yang digunakan adalah sebagai berikut:
+    </p>
+
+    <div class="callout">
+      <code>
+        portofolio/<br>
+        &nbsp;&nbsp;├── index.html &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Halaman utama<br>
+        &nbsp;&nbsp;├── project-detail.html &nbsp;&nbsp;&nbsp;&nbsp;← Halaman detail proyek<br>
+        &nbsp;&nbsp;├── css/<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── base.css &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Gaya visual umum<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── navbar.css &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Gaya visual navbar<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── home.css &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Gaya visual beranda<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── about.css &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Gaya visual tentang<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── projects.css &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Gaya visual proyek<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── project-detail.css &nbsp;← Gaya visual detail proyek<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── contact.css &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Gaya visual kontak<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── style.css &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Seluruh gaya visual<br>
+        &nbsp;&nbsp;├── js/<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── script.js &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Toggle bahasa &amp; interaksi<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── projects.js &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Interaksi proyek<br>
+        &nbsp;&nbsp;└── assets/<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── docs/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← File Dokumen<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── img/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Foto &amp; gambar
+      </code>
+    </div>
+
+    <p>
+      Website diimplementasikan dengan pendekatan <em>semantic HTML5</em>, menggunakan elemen seperti 
+      <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, 
+      <code>&lt;section&gt;</code>, dan <code>&lt;footer&gt;</code> untuk menjaga aksesibilitas 
+      dan keterbacaan kode. Tata letak menggunakan kombinasi CSS Flexbox dan Grid untuk 
+      menghasilkan desain yang responsif.
+    </p>
+
+    <div class="sub-section">
+      <h3 class="sub-title">7.1 Hasil Implementasi</h3>
+      <p>
+        Berikut adalah tampilan website portofolio yang telah diimplementasikan. Halaman beranda 
+        menampilkan nama, deskripsi profesi, serta dua tombol navigasi utama ("Lihat Proyek" dan 
+        "Hubungi Saya") di sisi kiri, dengan foto profil di sisi kanan dalam bingkai dengan 
+        sudut membulat.
+      </p>
+
+      <div class="figure">
+        <div class="figure-placeholder">
+          <img
+            class="figure-image"
+            src="../img/projects/portofolio/Portofolio website-final.png"
+            alt="Use Case Diagram"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+
+          <div class="figure-icon" style="display: none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="figure-caption">
+          <strong>Gambar 5</strong> Tampilan Halaman Beranda Website Portofolio
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3 class="sub-title">7.2 Publikasi ke GitHub Pages</h3>
+      <p>
+        Setelah implementasi selesai, seluruh file proyek diunggah ke repositori GitHub. 
+        Layanan GitHub Pages kemudian diaktifkan melalui pengaturan repositori dengan memilih 
+        branch <code>main</code> sebagai sumber halaman. Website dapat diakses melalui URL 
+        dengan format <code>https://[username].github.io/[nama-repositori]</code>.
+      </p>
+    </div>
+  </section>
+
+  <!-- 8. PENGUJIAN -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Pengujian</h2>
+    </div>
+    <p>
+      Pengujian dilakukan menggunakan metode <em>Black Box Testing</em>, yaitu pengujian 
+      fungsionalitas berdasarkan keluaran yang dihasilkan tanpa memperhatikan kode program di 
+      dalamnya [7]. Selain itu, dilakukan pula pengujian responsivitas pada berbagai ukuran layar.
+    </p>
+
+    <div class="table-wrap">
+      <p class="table-caption">TABEL 2 — HASIL PENGUJIAN BLACK BOX</p>
+      <table>
+        <thead>
+          <tr><th>No</th><th>Fitur yang Diuji</th><th>Hasil yang Diharapkan</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Navigasi menu</td><td>Berpindah ke halaman yang sesuai</td><td>✓ Berhasil</td></tr>
+          <tr><td>2</td><td>Toggle bahasa ID/EN</td><td>Teks berubah sesuai bahasa dipilih</td><td>✓ Berhasil</td></tr>
+          <tr><td>3</td><td>Tombol "Lihat Proyek"</td><td>Mengarahkan ke halaman Projects</td><td>✓ Berhasil</td></tr>
+          <tr><td>4</td><td>Tombol "Hubungi Saya"</td><td>Mengarahkan ke halaman Contact</td><td>✓ Berhasil</td></tr>
+          <tr><td>5</td><td>Tampilan di mobile</td><td>Layout menyesuaikan layar kecil</td><td>✓ Berhasil</td></tr>
+          <tr><td>6</td><td>Tampilan di desktop</td><td>Dua kolom tampil dengan benar</td><td>✓ Berhasil</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 9. KESIMPULAN -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">09</span>
+      <h2 class="section-title">Kesimpulan</h2>
+    </div>
+    <p>
+      Website portofolio pribadi berhasil dirancang dan diimplementasikan menggunakan HTML dan CSS 
+      dengan mengikuti alur pengembangan yang sistematis, meliputi analisis kebutuhan, pemodelan 
+      UML, perancangan wireframe dengan Balsamiq, implementasi kode, serta pengujian dan publikasi 
+      melalui GitHub Pages.
+    </p>
+    <p>
+      Hasil pengujian menunjukkan bahwa seluruh fitur yang dirancang berjalan sesuai dengan 
+      kebutuhan yang telah ditetapkan. Website mampu menampilkan informasi pengembang secara 
+      terstruktur, responsif di berbagai perangkat, serta dapat diakses secara publik melalui 
+      internet menggunakan layanan GitHub Pages.
+    </p>
+    <p>
+      Pengembangan lebih lanjut dapat dilakukan dengan menambahkan fitur animasi halus, 
+      dark/light mode, serta formulir kontak yang terhubung dengan layanan pengiriman surel 
+      seperti EmailJS atau Formspree untuk meningkatkan interaktivitas website.
+    </p>
+  </section>
+
+  <!-- REFERENSI -->
+  <section class="section references">
+    <div class="section-header">
+      <span class="section-number">Ref</span>
+      <h2 class="section-title">Daftar Pustaka</h2>
+    </div>
+    <ol>
+      <li>
+        Wirastuti, M. A., Al-Ars, K. R., Rahmani, D. P., Fauzan, M. F., Falah, N. A., Balle, J. L., 
+        Maulana, M. S., Dewi, M. F., Febriyanti, T., Suhada, V. R., Mindara, G. P., &amp; Siskandar, R. 
+        (2023). <em>Penerapan Website sebagai Media E-Portofolio berbasis HTML dan CSS</em>. 
+        Jurnal Sains Indonesia, Vol. 4 No. 3. 
+        <a href="https://jurnal.pusatsains.com/index.php/jsi/article/view/136" target="_blank">
+          https://jurnal.pusatsains.com/index.php/jsi/article/view/136
+        </a>
+      </li>
+      <li>
+        Jihadi, H., &amp; Syarabil, A. F. (2023). 
+        <em>Menjelajahi Dunia Web: Panduan Pemula untuk Pemrograman Web</em>. 
+        Jurnal JSMD, Vol. 2 No. 2. 
+        <a href="https://research.e-siber.org/JSMD" target="_blank">
+          https://research.e-siber.org/JSMD
+        </a>
+      </li>
+      <li>
+        Apandi, S., Awalludin, A. F., Praditya, A., Ilhamsyah, H., Assyakur, I. F., Kusnandar, M. N. D., 
+        Permana, R. A., Jodi, R. S., Suandy, &amp; Novala, T. (2024). 
+        <em>Pembuatan Tampilan (Front-End) Web Portofolio dan CV Digital dengan HTML, CSS sebagai 
+        Alat Melamar Pekerjaan</em>. APPA: Jurnal Pengabdian Kepada Masyarakat, Vol. 2 No. 3. 
+        <a href="https://www.jurnalmahasiswa.com/index.php/appa/article/view/2232" target="_blank">
+          https://www.jurnalmahasiswa.com/index.php/appa/article/view/2232
+        </a>
+      </li>
+      <li>
+        Pebrianto, E., Rahardjo, B., Setiawan, D., &amp; Kusuma, T. (2024). 
+        <em>Pengenalan Dasar-Dasar HTML dan CSS pada Siswa/I Yayasan Al-Qaaf Tangerang Banten</em>. 
+        APPA: Jurnal Pengabdian Kepada Masyarakat, Vol. 1 No. 6, 417–422. 
+        <a href="https://jurnalmahasiswa.com/index.php/appa/article/view/915" target="_blank">
+          https://jurnalmahasiswa.com/index.php/appa/article/view/915
+        </a>
+      </li>
+      <li>
+        Pingge, R. M. P. U., Nalle, S. M., Mali, A. K., Saputra, P. A., &amp; Feoh, G. (2024). 
+        <em>Implementasi Use Case Diagram dan Activity Diagram pada Perancangan Aplikasi 
+        Pembelajaran Bahasa Inggris Berbasis Android di SDN 5 Gulingan</em>. 
+        Seminar Ilmiah Nasional Teknologi, Sains, dan Sosial Humaniora (SINTESA), Vol. 6. 
+        <a href="https://doi.org/10.36002/snts.v6i.2832" target="_blank">
+          https://doi.org/10.36002/snts.v6i.2832
+        </a>
+      </li>
+      <li>
+        Pranoto, S. S. (2024). 
+        <em>Penerapan UML dalam Perancangan Sistem Informasi Pelaporan dan Evaluasi Pembangunan</em>. 
+        SURPLUS: Jurnal Ekonomi dan Bisnis, 384–401.
+      </li>
+      <li>
+        Kurniawan, T. A. (2018). 
+        <em>Pemodelan Use Case (UML): Evaluasi terhadap Beberapa Kesalahan dalam Praktik</em>. 
+        Jurnal Teknologi Informasi dan Ilmu Komputer, 5(1). 
+        <a href="https://doi.org/10.25126/jtiik.201851610" target="_blank">
+          https://doi.org/10.25126/jtiik.201851610
+        </a>
+      </li>
+    </ol>
+  </section>
+
+</article>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <strong>Sifa Fadilah</strong> &nbsp;·&nbsp; Website Portofolio &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Artikel Ilmiah
+</footer>
+
+</body>
+</html>

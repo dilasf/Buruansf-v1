@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sifa Fadilah Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+    <ul class="nav-menu">
+        <li><a href="#home" id="navHome"></a></li>
+        <li><a href="#about" id="navAbout"></a></li>
+        <li><a href="#projects" id="navProjects"></a></li>
+        <li><a href="#contact" id="navContact"></a></li>
+    </ul>
+
+    <div class="language-switch">
+        <button id="btn-id" onclick="changeLanguage('id')">ID</button>
+        <button id="btn-en" onclick="changeLanguage('en')">EN</button>
+    </div>
+    </nav>
+    <!-- NAVBAR END -->
+
+    <!-- HOME -->
+   <section id="home">
+        <div class="home-content">
+            <div class="home-text">
+                <p class="home-label" id="homeLabel"></p>
+                <h1 id="title"></h1>
+                <h2 id="desc"></h2>
+
+                <p class="home-intro" id="homeIntro"></p>
+
+                <div class="home-actions">
+                    <a href="#projects" class="btn-primary" id="btnProjects"></a>
+                    <a href="#contact" class="btn-secondary" id="btnContact"></a>
+                </div>
+            </div>
+
+            <div class="home-visual">
+                <img
+                    src="assets/img/sifa1.jpg"
+                    alt="Sifa Fadilah"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                >
+
+                <div class="home-photo-placeholder">
+                    <div class="profile-head"></div>
+                    <div class="profile-body"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- HOME END -->
+
+   <!-- ABOUT -->
+   <section id="about">
+        <div class="about-wrapper">
+            <p class="section-label" id="aboutLabel"></p>
+            <h2 id="aboutTitle"></h2>
+
+            <div class="about-content">
+                <div class="about-photo">
+                    <div class="about-photo-frame">
+                        <img src="assets/img/about-bg.jpg" alt="" class="about-bg">
+                    </div>
+
+                    <img
+                        class="about-person"
+                        src="assets/img/sifa1-cutout.png"
+                        alt="Foto Sifa Fadilah"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    >
+                    <div class="profile-placeholder">
+                        <div class="profile-head"></div>
+                        <div class="profile-body"></div>
+                    </div>
+                </div>
+
+                <div class="about-text">
+                    <h3 id="aboutGreeting"></h3>
+                    <p id="aboutDesc"></p>
+
+                    <div class="about-highlights">
+                        <div>
+                            <strong>3.82</strong>
+                            <span id="highlightGpa"></span>
+                        </div>
+                        <div>
+                            <strong>100+</strong>
+                            <span id="highlightStudents"></span>
+                        </div>
+                        <div>
+                            <strong>Laravel & Flutter</strong>
+                            <span id="highlightFocus"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ABOUT END -->
+
+    <!-- PROJECTS -->
+   <section id="projects">
+        <div class="projects-wrapper">
+            <p class="section-label" id="projectLabel"></p>
+            <h2 id="projectTitle"></h2>
+
+            <div class="projects-grid" id="projectsGrid"></div>
+
+            <!-- <div class="projects-more">
+                <a href="projects.html" id="projectMore"></a>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- PROJECTS END -->
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="contact-wrapper">
+            <p class="section-label" id="contactLabel"></p>
+            <h2 id="contactTitle"></h2>
+
+            <p class="contact-intro" id="contactIntro"></p>
+
+            <div class="contact-grid">
+                <a href="mailto:sifafadilah339@gmail.com" class="contact-card">
+                    <div class="contact-icon">✉</div>
+                    <div>
+                        <span id="emailLabel"></span>
+                        <strong>sifafadilah339@gmail.com</strong>
+                    </div>
+                </a>
+
+                <a href="tel:0895385277611" class="contact-card">
+                    <div class="contact-icon">☎</div>
+                    <div>
+                        <span id="phoneLabel"></span>
+                        <strong>0851-2109-1603</strong>
+                    </div>
+                </a>
+
+                <a href="https://github.com/dilasf" target="_blank" class="contact-card">
+                    <div class="contact-icon">GH</div>
+                    <div>
+                        <span>GitHub</span>
+                        <strong>github.com/dilasf</strong>
+                    </div>
+                </a>
+            </div>
+
+            <p class="contact-closing" id="contactClosing"></p>
+        </div>
+    </section>
+    <!-- CONTACT END -->
+
+
+    <script src="js/projects.js"></script>
+    <script src="js/script.js"></script>
+   
+    <!-- <footer>
+        <p>&copy; 2023 My Portfolio</p>
+    </footer> -->
+</body>
+</html>

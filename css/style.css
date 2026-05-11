@@ -1,0 +1,12 @@
+@import url("base.css");
+@import url("navbar.css");
+@import url("home.css");
+@import url("about.css");
+@import url("projects.css");
+@import url("project-detail.css");
+@import url("contact.css");
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}

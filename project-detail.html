@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Detail</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+     <!-- NAVBAR -->
+    <nav>
+    <ul class="nav-menu">
+        <li><a href="index.html#home" id="navHome"></a></li>
+        <li><a href="index.html#about" id="navAbout"></a></li>
+        <li><a href="index.html#projects" id="navProjects"></a></li>
+        <li><a href="index.html#contact" id="navContact"></a></li>
+    </ul>
+
+    <div class="language-switch">
+        <button id="btn-id" onclick="changeLanguage('id')">ID</button>
+        <button id="btn-en" onclick="changeLanguage('en')">EN</button>
+    </div>
+    </nav>
+    <!-- NAVBAR END -->
+
+    <!-- PROJECT DETAIL -->
+     <section class="project-detail-page">
+        <div class="project-detail-wrapper">
+            <!-- <a href="index.html#projects" class="back-link">← Kembali ke Proyek</a> -->
+            <div id="projectDetail"></div>
+        </div>
+    </section>
+
+    <script src="js/projects.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>

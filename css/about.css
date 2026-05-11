@@ -1,0 +1,220 @@
+#about {
+    text-align: left;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section-label {
+    display: inline-block;
+    margin: 0 0 12px;
+    padding: 7px 14px;
+    border: 1px solid #333;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#aboutTitle {
+    margin: 0 0 32px;
+    font-size: 36px;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    align-items: center;
+    gap: 55px;
+}
+
+.about-photo {
+    width: 330px;
+    height: 390px;
+    position: relative;
+    flex-shrink: 0;
+    overflow: visible;
+}
+
+.about-photo-frame {
+    position: absolute;
+    inset: 38px 18px 18px 38px;
+    border-radius: 42px 42px 18px 18px;
+    background: #f2f2f2;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.about-photo::before {
+    content: "";
+    position: absolute;
+    right: -14px;
+    top: 34px;
+    width: 58px;
+    height: 86%;
+    border-right: 2px solid rgba(80, 80, 80, 0.28);
+    border-bottom: 2px solid rgba(80, 80, 80, 0.28);
+    border-radius: 0 46px 46px 0;
+    z-index: 0;
+}
+
+.about-photo::after {
+    content: "";
+    position: absolute;
+    width: 92%;
+    height: 82%;
+    right: -10px;
+    bottom: -12px;
+    border: 1.5px dashed rgba(80, 80, 80, 0.18);
+    border-radius: 48px 48px 22px 22px;
+    z-index: 0;
+}
+
+.about-person {
+    position: absolute;
+    left: 20px;
+    bottom: 18px;
+    width: 113%;
+    max-height: 384px;
+    object-fit: contain;
+    z-index: 2;
+}
+
+.profile-placeholder {
+    position: absolute;
+    inset: 38px 18px 18px 38px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 42px 42px 18px 18px;
+    background: #f5f5f5;
+    z-index: 3;
+}
+
+.profile-head {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    background: #cfcfcf;
+    margin-bottom: 14px;
+}
+
+.profile-body {
+    width: 145px;
+    height: 72px;
+    border-radius: 80px 80px 0 0;
+    background: #cfcfcf;
+}
+
+.about-text {
+    max-width: 760px;
+}
+
+.about-text h3 {
+    margin: 0 0 14px;
+    font-size: 22px;
+    line-height: 1.4;
+}
+
+.about-text p {
+    line-height: 1.8;
+    margin: 0;
+    color: #444;
+    font-size: 16px;
+}
+
+.about-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.about-highlights div {
+    border: 1px solid #e2e2e2;
+    border-radius: 14px;
+    padding: 16px;
+    background: #f2f2f2;
+}
+
+.about-highlights strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 20px;
+    color: #222;
+}
+
+.about-highlights span {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .about-photo {
+        width: 100%;
+        max-width: 260px;
+        height: 320px;
+        margin: 10px auto 0;
+    }
+
+    .about-photo-frame {
+        inset: 46px 14px 14px 26px;
+        border-radius: 34px 34px 16px 16px;
+    }
+
+    .about-photo::before {
+        right: -8px;
+        top: 46px;
+        width: 42px;
+        height: 78%;
+        border-right: 1.5px solid rgba(80, 80, 80, 0.24);
+        border-bottom: 1.5px solid rgba(80, 80, 80, 0.24);
+        border-radius: 0 34px 34px 0;
+    }
+
+    .about-photo::after {
+        width: 88%;
+        height: 76%;
+        right: -4px;
+        bottom: -6px;
+        border-radius: 36px 36px 18px 18px;
+    }
+
+    .about-person {
+        left: 2px;
+        bottom: 14px;
+        width: 104%;
+        max-height: 310px;
+    }
+
+    .profile-placeholder {
+        inset: 46px 14px 14px 26px;
+        border-radius: 34px 34px 16px 16px;
+    }
+
+    #aboutTitle {
+        font-size: 30px;
+        margin-bottom: 24px;
+    }
+
+    .about-text h3 {
+        font-size: 19px;
+    }
+
+    .about-highlights {
+        grid-template-columns: 1fr;
+    }
+}
